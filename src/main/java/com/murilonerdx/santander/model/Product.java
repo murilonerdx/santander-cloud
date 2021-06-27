@@ -1,13 +1,25 @@
 package com.murilonerdx.santander.model;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
+@EntityScan
 @Document(indexName="product", type="catalog")
 public class Product {
     @Id
     private Long id;
     private String name;
     private Double amount;
+
+    public Product(Long id, String name, Double amount) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+    }
+
+    public Product() {
+    }
 
     public Long getId() {
         return id;
@@ -32,8 +44,5 @@ public class Product {
     public void setAmount(Double amount) {
         this.amount = amount;
     }
-
-
-
 
 }
